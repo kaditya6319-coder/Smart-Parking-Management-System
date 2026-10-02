@@ -300,7 +300,7 @@ git clone https://github.com/kaditya6319-coder/Smart-Parking-Management-System.g
 ### 2. Navigate to the project
 
 ```bash
-cd Smart-Parking-Management-System
+cd "D:\Portfolio\Smart-Parking-Management-System"
 ```
 
 ### 3. Create a virtual environment
@@ -364,6 +364,8 @@ http://127.0.0.1:8000/docs
 Open another terminal from the project root:
 
 ```bash
+cd "D:\Portfolio\Smart-Parking-Management-System"
+
 python -m http.server 5500 --directory frontend
 ```
 
