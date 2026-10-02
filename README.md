@@ -342,6 +342,8 @@ This creates the SQLite database and initializes the parking slots.
 From the project root:
 
 ```bash
+cd "D:\Portfolio\Smart-Parking-Management-System"
+
 uvicorn backend.app:app --reload
 ```
 
