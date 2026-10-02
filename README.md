@@ -487,7 +487,7 @@ Possible future improvements include:
 
 ## 👨‍💻 Author
 
-**Harshit**
+**ADITYA KUMAR**
 
 GitHub:
 
