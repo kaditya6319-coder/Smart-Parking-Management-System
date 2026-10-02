@@ -1,150 +1,186 @@
-# Smart Parking Management System
+# 🚗 Smart Parking Management System
 
-A full-stack Smart Parking Management System designed to manage parking slots, vehicle entry and exit, parking sessions, occupancy, revenue, and sensor-based slot monitoring through a REST API and web dashboard.
+A full-stack **Smart Parking Management System** designed to manage parking slots, vehicle entry and exit, parking sessions, fee calculation, occupancy statistics, sensor simulation, and REST API communication through an interactive web dashboard.
 
-## Overview
-
-The system provides a centralized platform for monitoring and managing a parking facility.
-
-It combines:
-
-* **FastAPI** for the backend REST API
-* **SQLite** for structured parking and session data
-* **HTML, CSS and JavaScript** for the web dashboard
-* **Python-based sensor simulation** for parking-slot monitoring
-
-The application automatically assigns available parking slots, records vehicle sessions, calculates parking fees, tracks occupancy, and displays real-time parking information through the dashboard.
+The project demonstrates practical implementation of **Python, FastAPI, SQLite, SQL, REST APIs, JavaScript, HTML/CSS, data analysis, and dashboard development**.
 
 ---
 
-## Key Features
+## 📊 Dashboard Preview
 
-### Parking Management
+![Smart Parking Dashboard](screenshots/dashboard.png)
 
-* View all parking slots
-* Display slot availability in real time
-* Automatically assign an available slot during vehicle entry
-* Release the slot when a vehicle exits
-* Prevent duplicate active parking entries
-
-### Vehicle Management
-
-* Register vehicles during entry
-* Store vehicle number and vehicle type
-* Search vehicles using their registration number
-* View the latest parking session for a vehicle
-
-### Parking Sessions
-
-Each parking session records:
-
-* Vehicle
-* Vehicle type
-* Assigned parking slot
-* Entry time
-* Exit time
-* Parking duration
-* Parking fee
-* Session status
-
-### Dashboard Analytics
-
-The dashboard displays:
+The dashboard provides a centralized view of:
 
 * Total parking slots
 * Available slots
 * Occupied slots
 * Occupancy rate
-* Total revenue
-* Parking slot status
-* Recent parking sessions
-
-### Sensor Simulation
-
-The system includes a Python-based sensor simulator that can simulate whether a vehicle is detected in a parking slot.
-
-The simulated sensor updates the slot status between:
-
-* `AVAILABLE`
-* `OCCUPIED`
+* Parking revenue
+* Current parking-slot status
+* Vehicle entry and exit operations
+* Vehicle search
+* Parking session history
 
 ---
 
-## Technology Stack
+## 🔌 API Documentation
 
-| Layer           | Technology              |
-| --------------- | ----------------------- |
-| Frontend        | HTML5, CSS3, JavaScript |
-| Backend         | Python, FastAPI         |
-| Database        | SQLite                  |
-| API             | REST API                |
-| Server          | Uvicorn                 |
-| Data Processing | Python                  |
-| Version Control | Git                     |
-| Repository      | GitHub                  |
+The backend provides REST APIs through FastAPI and automatically generated Swagger documentation.
 
----
+![FastAPI Documentation](screenshots/api-docs.png)
 
-## System Architecture
+Swagger UI is available at:
 
 ```text
-                    ┌─────────────────────────┐
-                    │     Web Dashboard       │
-                    │   HTML + CSS + JS       │
-                    └────────────┬────────────┘
-                                 │
-                                 │ REST API
-                                 ▼
-                    ┌─────────────────────────┐
-                    │      FastAPI Backend    │
-                    │                         │
-                    │ Vehicle Management      │
-                    │ Parking Management       │
-                    │ Statistics               │
-                    │ Session Management       │
-                    │ Sensor Updates           │
-                    └────────────┬────────────┘
-                                 │
-                  ┌──────────────┴──────────────┐
-                  │                             │
-                  ▼                             ▼
-        ┌───────────────────┐       ┌────────────────────┐
-        │   SQLite Database │       │ Sensor Simulator   │
-        │                   │       │      Python        │
-        │ Parking Slots     │       │                    │
-        │ Vehicles          │       │ Vehicle Detection  │
-        │ Parking Sessions  │       │ Slot Status        │
-        └───────────────────┘       └────────────────────┘
+http://127.0.0.1:8000/docs
 ```
 
 ---
 
-## Parking Workflow
+## 🎯 Project Objective
+
+The objective of this project is to develop a practical parking management solution that can:
+
+1. Track parking-slot availability.
+2. Register vehicles entering the parking area.
+3. Automatically assign available parking slots.
+4. Prevent duplicate active parking entries.
+5. Record vehicle exit information.
+6. Calculate parking duration and parking fees.
+7. Maintain parking-session history.
+8. Provide occupancy and revenue statistics.
+9. Simulate parking sensors.
+10. Expose the system through REST APIs.
+11. Display parking information through a web dashboard.
+
+---
+
+## ✨ Key Features
+
+### 🅿️ Parking Slot Management
+
+* 10 parking slots initialized automatically.
+* Real-time available/occupied status.
+* Automatic slot assignment.
+* Slot released after vehicle exit.
+
+### 🚘 Vehicle Management
+
+* Vehicle number registration.
+* Vehicle type tracking.
+* Duplicate active-entry prevention.
+* Vehicle search functionality.
+* Vehicle parking history.
+
+### 💰 Parking Fee Management
+
+* Automatic parking-duration calculation.
+* Fee calculation based on parking duration.
+* Revenue tracking.
+
+### 📊 Analytics Dashboard
+
+* Total slots
+* Available slots
+* Occupied slots
+* Occupancy percentage
+* Total vehicles
+* Total revenue
+
+### 📡 Sensor Simulation
+
+The system includes a simulated parking sensor endpoint that can update the status of individual parking slots.
+
+### 🔌 REST API
+
+FastAPI provides endpoints for:
+
+* Parking status
+* Parking slots
+* Vehicle entry
+* Vehicle exit
+* Statistics
+* Parking sessions
+* Vehicle search
+* Sensor updates
+
+---
+
+## 🛠️ Technology Stack
+
+| Technology | Purpose                               |
+| ---------- | ------------------------------------- |
+| Python     | Backend programming and parking logic |
+| FastAPI    | REST API development                  |
+| SQLite     | Relational database                   |
+| SQL        | Database operations and queries       |
+| HTML       | Frontend structure                    |
+| CSS        | Dashboard styling                     |
+| JavaScript | Frontend logic and API communication  |
+| Uvicorn    | FastAPI application server            |
+| Git/GitHub | Version control and project hosting   |
+
+---
+
+## 🏗️ System Architecture
+
+```text
+                    ┌──────────────────────────┐
+                    │       Web Dashboard      │
+                    │      HTML / CSS / JS     │
+                    └────────────┬─────────────┘
+                                 │
+                                 │ REST API
+                                 ▼
+                    ┌──────────────────────────┐
+                    │       FastAPI Backend     │
+                    │       Python / Uvicorn    │
+                    └────────────┬─────────────┘
+                                 │
+              ┌──────────────────┼──────────────────┐
+              │                  │                  │
+              ▼                  ▼                  ▼
+       Parking Logic       Sensor Simulator     Statistics
+              │
+              ▼
+                    ┌──────────────────────────┐
+                    │       SQLite Database     │
+                    │                           │
+                    │ parking_slots             │
+                    │ vehicles                  │
+                    │ parking_sessions          │
+                    └──────────────────────────┘
+```
+
+---
+
+## 🔄 Parking Workflow
 
 ```text
 Vehicle Arrives
        │
        ▼
-Vehicle Entry Request
+Enter Vehicle Number
        │
        ▼
 Check Existing Active Session
        │
-       ├── Already Parked ──► Reject Request
+       ├── Already Parked → Reject Entry
        │
        ▼
 Find Available Slot
        │
-       ├── No Slot Available ──► Reject Request
+       ├── No Slot Available → Reject Entry
        │
        ▼
 Assign Parking Slot
        │
        ▼
-Create Active Parking Session
+Create Parking Session
        │
        ▼
-Vehicle Parks
+Vehicle Parked
        │
        ▼
 Vehicle Exit Request
@@ -164,156 +200,64 @@ Release Parking Slot
 
 ---
 
-## Database Design
+## 🗄️ Database Design
 
-The system uses SQLite for persistent storage.
+The system uses SQLite for persistent data storage.
 
 ### `parking_slots`
 
-Stores information about parking spaces.
-
-| Column        | Description            |
-| ------------- | ---------------------- |
-| `id`          | Unique slot identifier |
-| `slot_number` | Parking slot number    |
-| `status`      | Current slot status    |
-
-Example statuses:
-
-```text
-AVAILABLE
-OCCUPIED
-```
+| Column      | Description             |
+| ----------- | ----------------------- |
+| id          | Unique slot ID          |
+| slot_number | Parking slot identifier |
+| status      | Current slot status     |
 
 ### `vehicles`
 
-Stores registered vehicle information.
-
-| Column           | Description                 |
-| ---------------- | --------------------------- |
-| `id`             | Unique vehicle identifier   |
-| `vehicle_number` | Vehicle registration number |
-| `vehicle_type`   | Type of vehicle             |
+| Column         | Description                 |
+| -------------- | --------------------------- |
+| id             | Unique vehicle ID           |
+| vehicle_number | Vehicle registration number |
+| vehicle_type   | Type of vehicle             |
 
 ### `parking_sessions`
 
-Stores the parking history of vehicles.
-
-| Field        | Description            |
-| ------------ | ---------------------- |
-| `id`         | Session identifier     |
-| `vehicle_id` | Related vehicle        |
-| `slot_id`    | Assigned parking slot  |
-| `entry_time` | Vehicle entry time     |
-| `exit_time`  | Vehicle exit time      |
-| `duration`   | Parking duration       |
-| `fee`        | Calculated parking fee |
-| `status`     | Session status         |
+| Column     | Description            |
+| ---------- | ---------------------- |
+| id         | Unique session ID      |
+| vehicle_id | Vehicle reference      |
+| slot_id    | Parking-slot reference |
+| entry_time | Vehicle entry time     |
+| exit_time  | Vehicle exit time      |
+| duration   | Parking duration       |
+| fee        | Calculated parking fee |
+| status     | Session status         |
 
 ---
 
-## REST API
+## 🔌 REST API Endpoints
 
-The FastAPI backend provides the following endpoints.
+| Method | Endpoint                        | Purpose                           |
+| ------ | ------------------------------- | --------------------------------- |
+| GET    | `/`                             | API welcome/status                |
+| GET    | `/api/status`                   | Backend status                    |
+| GET    | `/api/slots`                    | Retrieve parking-slot information |
+| POST   | `/api/vehicle/entry`            | Register vehicle entry            |
+| POST   | `/api/vehicle/exit`             | Register vehicle exit             |
+| GET    | `/api/statistics`               | Retrieve parking statistics       |
+| GET    | `/api/sessions`                 | Retrieve parking-session history  |
+| GET    | `/api/vehicle/{vehicle_number}` | Search vehicle information        |
+| POST   | `/api/sensor/update`            | Simulate parking sensor update    |
 
-### System
-
-```text
-GET /
-GET /api/status
-```
-
-### Parking Slots
-
-```text
-GET /api/slots
-```
-
-Returns all parking slots and their current status.
-
-### Statistics
+Interactive API documentation:
 
 ```text
-GET /api/statistics
-```
-
-Returns:
-
-* Total slots
-* Available slots
-* Occupied slots
-* Occupancy rate
-* Total vehicles
-* Total revenue
-
-### Vehicle Entry
-
-```text
-POST /api/vehicle/entry
-```
-
-Registers a vehicle and assigns an available parking slot.
-
-Example request:
-
-```json
-{
-    "vehicle_number": "PB01AB1234",
-    "vehicle_type": "Car"
-}
-```
-
-### Vehicle Exit
-
-```text
-POST /api/vehicle/exit
-```
-
-Processes a vehicle exit and calculates the parking fee.
-
-Example request:
-
-```json
-{
-    "vehicle_number": "PB01AB1234"
-}
-```
-
-### Vehicle Search
-
-```text
-GET /api/vehicle/{vehicle_number}
-```
-
-Returns the vehicle's latest parking information.
-
-### Parking Sessions
-
-```text
-GET /api/sessions
-```
-
-Returns parking session history.
-
-### Sensor Update
-
-```text
-POST /api/sensor/update
-```
-
-Simulates a parking sensor reading.
-
-Example request:
-
-```json
-{
-    "slot_number": "P03"
-}
+http://127.0.0.1:8000/docs
 ```
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 Smart-Parking-Management-System/
@@ -333,76 +277,81 @@ Smart-Parking-Management-System/
 │   └── style.css
 │
 ├── screenshots/
+│   ├── dashboard.png
+│   └── api-docs.png
 │
 ├── .gitignore
 ├── README.md
 └── requirements.txt
 ```
 
-> `parking.db` and the Python virtual environment are excluded from Git using `.gitignore`.
+> `parking.db` is generated locally at runtime and is excluded from GitHub using `.gitignore`.
 
 ---
 
-## Installation
+## ⚙️ Installation
 
-### 1. Clone the Repository
+### 1. Clone the repository
 
 ```bash
-git clone <your-github-repository-url>
+git clone https://github.com/kaditya6319-coder/Smart-Parking-Management-System.git
+```
+
+### 2. Navigate to the project
+
+```bash
 cd Smart-Parking-Management-System
 ```
 
-### 2. Create a Virtual Environment
+### 3. Create a virtual environment
 
-Windows:
-
-```powershell
+```bash
 python -m venv venv
 ```
 
-### 3. Activate the Virtual Environment
+### 4. Activate the virtual environment
 
-PowerShell:
+Windows PowerShell:
 
 ```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-### 4. Install Dependencies
+### 5. Install dependencies
 
-```powershell
+```bash
 pip install -r requirements.txt
 ```
 
 ---
 
-## Initialize the Database
+## 🗃️ Initialize the Database
 
-Run:
+Run the database initialization script:
 
-```powershell
-python backend\database.py
+```bash
+python -c "from backend.database import init_db; init_db()"
 ```
 
 This creates the SQLite database and initializes the parking slots.
 
 ---
 
-## Run the Backend
+## ▶️ Run the Backend
 
 From the project root:
 
-```powershell
+```bash
 uvicorn backend.app:app --reload
 ```
 
-The API will be available at:
+Backend:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-FastAPI interactive documentation:
+API documentation:
 
 ```text
 http://127.0.0.1:8000/docs
@@ -410,122 +359,143 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## Run the Frontend
+## 🌐 Run the Frontend
 
-Open another PowerShell window and navigate to the project directory:
+Open another terminal from the project root:
 
-```powershell
-cd "D:\Portfolio\Smart-Parking-Management-System"
-```
-
-Then run:
-
-```powershell
+```bash
 python -m http.server 5500 --directory frontend
 ```
 
-Open the dashboard:
+Then open:
 
 ```text
-http://127.0.0.1:5500
+http://localhost:5500
 ```
 
 ---
 
-## Testing Performed
+## 🧪 Testing Performed
 
-The following application workflows have been tested successfully:
+The following functionality has been tested:
 
-* Dashboard statistics
-* Parking slot display
-* Vehicle entry
-* Automatic slot assignment
-* Duplicate vehicle-entry prevention
-* Vehicle exit
-* Parking duration calculation
-* Parking fee calculation
-* Vehicle search
-* Parking session history
-* Sensor simulation
-* Backend API communication
-* Frontend-to-backend communication
+* ✅ Dashboard loading
+* ✅ Parking-slot status
+* ✅ Vehicle entry
+* ✅ Automatic parking-slot assignment
+* ✅ Duplicate vehicle-entry prevention
+* ✅ Vehicle exit
+* ✅ Parking-duration calculation
+* ✅ Parking-fee calculation
+* ✅ Vehicle search
+* ✅ Parking-session history
+* ✅ Sensor simulation
+* ✅ FastAPI REST endpoints
+* ✅ SQLite database operations
+* ✅ Frontend-backend communication
 
 ---
 
-## Example Parking Scenario
+## 💡 Example Parking Scenario
 
 ```text
 Vehicle: PB01AB1234
-Type: Car
+Vehicle Type: Car
 
-Entry
-  ↓
+Vehicle Entry
+      ↓
 Available Slot Found
-  ↓
+      ↓
 Slot Assigned
-  ↓
+      ↓
 Parking Session Created
-  ↓
+      ↓
 Vehicle Exits
-  ↓
+      ↓
 Duration Calculated
-  ↓
+      ↓
 Fee Calculated
-  ↓
+      ↓
 Session Completed
-  ↓
-Slot Released
+      ↓
+Parking Slot Released
 ```
 
 ---
 
-## Skills Demonstrated
+## 📈 Skills Demonstrated
 
-This project demonstrates practical experience with:
+### Programming & Backend
 
 * Python
 * FastAPI
-* REST APIs
-* SQLite
+* REST API development
+* Backend application development
+
+### Database
+
 * SQL
-* Database design
+* SQLite
+* Relational database design
 * CRUD operations
-* Backend development
-* Frontend development
-* JavaScript
+* Database relationships
+
+### Data & Analytics
+
+* Data collection
+* Data processing
+* Data transformation
+* Occupancy analysis
+* Revenue analysis
+* Operational statistics
+
+### Frontend
+
 * HTML
 * CSS
-* Data validation
-* Business logic
-* Parking analytics
-* Occupancy calculation
-* Revenue calculation
+* JavaScript
 * API integration
-* Git and GitHub
+* Dashboard development
+
+### Development Tools
+
+* Git
+* GitHub
+* Uvicorn
+* Swagger / OpenAPI
 
 ---
 
-## Future Enhancements
+## 🚀 Future Enhancements
 
-Potential future improvements include:
+Possible future improvements include:
 
-* PostgreSQL integration
-* User authentication and authorization
-* Admin dashboard
-* Advanced analytics and reporting
-* Real IoT sensor integration
-* QR-code based parking entry
-* Online parking reservation
-* Payment gateway integration
+* User authentication and role-based access
+* PostgreSQL database integration
+* Real IoT parking sensors
+* QR-based parking entry
+* Online payment integration
+* Advanced parking analytics
+* Revenue and occupancy charts
+* Admin management panel
 * Automated notifications
-* Role-based access control
 * Cloud deployment
 * Mobile application
 
 ---
 
-## Author
+## 👨‍💻 Author
 
 **Harshit**
 
-This project was developed as a practical full-stack application demonstrating Python, SQL, REST API development, database management, frontend development, and analytical dashboard concepts.
+GitHub:
+
+https://github.com/kaditya6319-coder
+
+---
+
+## 📌 Project Summary
+
+The **Smart Parking Management System** combines backend development, database management, REST APIs, frontend development, and operational analytics into a single practical application.
+
+It demonstrates how parking operations can be digitized by tracking vehicles, managing parking capacity, recording sessions, calculating fees, and presenting real-time operational information through a web dashboard.
