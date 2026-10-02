@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    Smart Parking Management System
+</title>
+
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+```
+
+</head>
+
+<body>
+
+```
+<!-- ======================================
+     Header
+======================================= -->
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            🅿️
+        </div>
+
+        <div>
+
+            <h1>
+                Smart Parking
+            </h1>
+
+            <span>
+                Management System
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="system-status">
+
+        <span
+            class="status-dot"
+            id="statusDot"
+        ></span>
+
+        <span id="systemStatus">
+            Checking...
+        </span>
+
+    </div>
+
+</header>
+
+
+<!-- ======================================
+     Main Container
+======================================= -->
+
+<main class="container">
+
+
+    <!-- ==================================
+         Page Heading
+    =================================== -->
+
+    <section class="page-heading">
+
+        <div>
+
+            <h2>
+                Parking Dashboard
+            </h2>
+
+            <p>
+                Monitor parking occupancy,
+                vehicles and revenue in real time.
+            </p>
+
+        </div>
+
+
+        <button
+            class="refresh-button"
+            onclick="refreshDashboard()"
+        >
+            ↻ Refresh
+        </button>
+
+    </section>
+
+
+    <!-- ==================================
+         Statistics
+    =================================== -->
+
+    <section class="stats-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🅿️
+            </div>
+
+            <div>
+
+                <p>
+                    Total Slots
+                </p>
+
+                <h3 id="totalSlots">
+                    0
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card available-card">
+
+            <div class="stat-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <p>
+                    Available
+                </p>
+
+                <h3 id="availableSlots">
+                    0
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card occupied-card">
+
+            <div class="stat-icon">
+                🚗
+            </div>
+
+            <div>
+
+                <p>
+                    Occupied
+                </p>
+
+                <h3 id="occupiedSlots">
+                    0
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📊
+            </div>
+
+            <div>
+
+                <p>
+                    Occupancy
+                </p>
+
+                <h3 id="occupancyRate">
+                    0%
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card revenue-card">
+
+            <div class="stat-icon">
+                ₹
+            </div>
+
+            <div>
+
+                <p>
+                    Total Revenue
+                </p>
+
+                <h3 id="totalRevenue">
+                    ₹0.00
+                </h3>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ==================================
+         Parking Slots
+    =================================== -->
+
+    <section class="panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <h2>
+                    Parking Slots
+                </h2>
+
+                <p>
+                    Live parking slot availability
+                </p>
+
+            </div>
+
+
+            <button
+                class="small-button"
+                onclick="loadSlots()"
+            >
+                ↻ Refresh
+            </button>
+
+        </div>
+
+
+        <div
+            class="parking-grid"
+            id="parkingGrid"
+        >
+
+            <div class="loading">
+                Loading parking slots...
+            </div>
+
+        </div>
+
+
+        <div class="legend">
+
+            <div class="legend-item">
+
+                <span
+                    class="legend-box available"
+                ></span>
+
+                Available
+
+            </div>
+
+
+            <div class="legend-item">
+
+                <span
+                    class="legend-box occupied"
+                ></span>
+
+                Occupied
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================
+         Vehicle Operations
+    =================================== -->
+
+    <section class="operations-grid">
+
+
+        <!-- Vehicle Entry -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Vehicle Entry
+                    </h2>
+
+                    <p>
+                        Register a vehicle and
+                        automatically assign a slot.
+                    </p>
+
+                </div>
+
+
+                <span class="operation-icon">
+                    🚗
+                </span>
+
+            </div>
+
+
+            <form id="entryForm">
+
+
+                <div class="form-group">
+
+                    <label
+                        for="entryVehicleNumber"
+                    >
+                        Vehicle Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="entryVehicleNumber"
+                        placeholder="e.g. HR01AB1234"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label
+                        for="entryVehicleType"
+                    >
+                        Vehicle Type
+                    </label>
+
+                    <select
+                        id="entryVehicleType"
+                        required
+                    >
+
+                        <option value="Car">
+                            Car
+                        </option>
+
+                        <option value="Bike">
+                            Bike
+                        </option>
+
+                        <option value="SUV">
+                            SUV
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Park Vehicle
+                </button>
+
+
+                <div
+                    id="entryMessage"
+                    class="message"
+                ></div>
+
+
+            </form>
+
+        </div>
+
+
+        <!-- Vehicle Exit -->
+
+        <div class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Vehicle Exit
+                    </h2>
+
+                    <p>
+                        Process exit and calculate
+                        the parking fee.
+                    </p>
+
+                </div>
+
+
+                <span class="operation-icon">
+                    🚘
+                </span>
+
+            </div>
+
+
+            <form id="exitForm">
+
+
+                <div class="form-group">
+
+                    <label
+                        for="exitVehicleNumber"
+                    >
+                        Vehicle Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="exitVehicleNumber"
+                        placeholder="e.g. HR01AB1234"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="danger-button"
+                >
+                    Exit Vehicle
+                </button>
+
+
+                <div
+                    id="exitMessage"
+                    class="message"
+                ></div>
+
+
+            </form>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ==================================
+         Vehicle Search
+    =================================== -->
+
+    <section class="panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <h2>
+                    Vehicle Search
+                </h2>
+
+                <p>
+                    Find a vehicle's current
+                    parking information.
+                </p>
+
+            </div>
+
+
+            <span class="operation-icon">
+                🔎
+            </span>
+
+        </div>
+
+
+        <form
+            id="searchForm"
+            class="search-form"
+        >
+
+            <div class="form-group search-input-group">
+
+                <label
+                    for="searchVehicleNumber"
+                >
+                    Vehicle Number
+                </label>
+
+                <input
+                    type="text"
+                    id="searchVehicleNumber"
+                    placeholder="e.g. DL01AB5678"
+                    autocomplete="off"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="primary-button search-button"
+            >
+                Search Vehicle
+            </button>
+
+        </form>
+
+
+        <div
+            id="searchMessage"
+            class="message"
+        ></div>
+
+
+        <div
+            id="vehicleSearchResult"
+            class="vehicle-result"
+        >
+
+            <div class="result-placeholder">
+
+                <div class="result-placeholder-icon">
+                    🔎
+                </div>
+
+                <p>
+                    Enter a vehicle number
+                    to view parking details.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================
+         Parking Sessions
+    =================================== -->
+
+    <section class="panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <h2>
+                    Parking Sessions
+                </h2>
+
+                <p>
+                    Recent vehicle parking activity
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Vehicle
+                        </th>
+
+                        <th>
+                            Type
+                        </th>
+
+                        <th>
+                            Slot
+                        </th>
+
+                        <th>
+                            Entry Time
+                        </th>
+
+                        <th>
+                            Exit Time
+                        </th>
+
+                        <th>
+                            Duration
+                        </th>
+
+                        <th>
+                            Fee
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="sessionsTable">
+
+                    <tr>
+
+                        <td
+                            colspan="8"
+                            class="loading"
+                        >
+                            Loading parking sessions...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- ======================================
+     Footer
+======================================= -->
+
+<footer class="footer">
+
+    <p>
+        Smart Parking Management System
+        &nbsp;•&nbsp;
+        Real-time Parking Management
+    </p>
+
+</footer>
+
+
+<!-- ======================================
+     JavaScript
+======================================= -->
+
+<script src="script.js"></script>
+```
+
+</body>
+
+</html>

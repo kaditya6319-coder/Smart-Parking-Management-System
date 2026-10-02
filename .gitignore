@@ -1,0 +1,41 @@
+# Python virtual environment
+
+venv/
+
+# Python cache files
+
+**pycache**/
+*.pyc
+*.pyo
+*.pyd
+
+# SQLite database
+
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment variables
+
+.env
+.env.*
+
+# IDE settings
+
+.vscode/
+.idea/
+
+# Operating system files
+
+.DS_Store
+Thumbs.db
+
+# Python testing and coverage
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+
+*.log
