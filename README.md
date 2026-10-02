@@ -361,12 +361,13 @@ http://127.0.0.1:8000/docs
 
 ## 🌐 Run the Frontend
 
-Open another terminal from the project root:
+Open another PowerShell terminal.
 
-```bash
+From the project root, run:
+
+```powershell
 cd "D:\Portfolio\Smart-Parking-Management-System"
-uvicorn backend.app:app --reload
-```
+python -m http.server 5500 --directory frontend
 
 Then open:
 
