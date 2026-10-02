@@ -368,14 +368,13 @@ From the project root, run:
 ```powershell
 cd "D:\Portfolio\Smart-Parking-Management-System"
 python -m http.server 5500 --directory frontend
-
-Then open:
+```
+Then Open
 
 ```text
 http://localhost:5500
 ```
 
----
 
 ## 🧪 Testing Performed
 
