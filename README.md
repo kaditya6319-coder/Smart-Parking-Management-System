@@ -343,7 +343,6 @@ From the project root:
 
 ```bash
 cd "D:\Portfolio\Smart-Parking-Management-System"
-
 uvicorn backend.app:app --reload
 ```
 
@@ -367,7 +366,6 @@ Open another terminal from the project root:
 
 ```bash
 cd "D:\Portfolio\Smart-Parking-Management-System"
-
 python -m http.server 5500 --directory frontend
 ```
 
